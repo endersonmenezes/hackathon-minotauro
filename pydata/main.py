@@ -28,12 +28,12 @@ def generate_maze():
     data = solution_maze(maze.cells, start, end, zoom, borders, id_partida)
     return jsonify(data)
 
-@app.route('/map/<string:file_type>', methods=['GET'])
-def get_map(file_type):
+@app.route('/map/<string:file_type>/<string:id_partida>', methods=['GET'])
+def get_map(file_type, id_partida):
     if file_type == 'gif':
-       filename = 'maze.gif'
+       filename = f'{id_partida}.gif'
     elif file_type == 'png':
-       filename = 'maze.png'
+       filename = f'{id_partida}.png'
     return send_file('./tempfolder/' + filename, mimetype='image/gif')
 
 
