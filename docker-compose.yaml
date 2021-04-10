@@ -1,9 +1,25 @@
 version: '3'
 
 services:
+  
   postgres-hackaton:
     image: postgres
     environment:
       POSTGRES_PASSWORD: "Mudar@123"
     ports:
       - "5432:5432"
+  
+  pydata:
+    build:
+      context: ./pydata
+      dockerfile: Dockerfile
+    container_name: pydata
+    command: python main.py
+    expose:
+      - 5000
+    volumes:
+      data_media:/pydata/tempfolder/
+
+
+volumes:
+  data_media:
