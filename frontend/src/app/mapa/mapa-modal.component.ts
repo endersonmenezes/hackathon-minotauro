@@ -19,10 +19,13 @@ export class MapaModalComponent {
   noButton = 'Não'
   yesButton = 'Sim'
 
+  hashCode = ''
+
   constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) {
     this.title = data.title
     this.mapaUrl = data.mapaUrl
     this.noButton = data.noButton || 'Não'
     this.yesButton = data.yesButton || 'Sim'
+    this.hashCode = new Date().toUTCString()
   }
 }
