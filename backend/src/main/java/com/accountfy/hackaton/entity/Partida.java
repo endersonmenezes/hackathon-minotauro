@@ -15,8 +15,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
-@Table(name = "TB_PLANET")
-public class Planet implements Serializable {
+@Table(name = "TB_PARTIDA")
+public class Partida implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -30,24 +30,24 @@ public class Planet implements Serializable {
 	private Long version;
 
 	@CreationTimestamp
-	@Column(name = "CREATIONDATE", updatable = false, nullable = false)
+	@Column(name = "CREATION_DATE", updatable = false, nullable = false)
 	private Date creationDate;
 
 	@UpdateTimestamp
-	@Column(name = "UPDATEDATE", nullable = false)
+	@Column(name = "UPDATE_DATE", nullable = false)
 	private Date updateDate;
 
-	@Column(name = "NAME", unique = true)
-	private String name;
+	@Column(name = "NOME_JOGADOR")
+	private String nomeJogador;
 
-	@Column(name = "CLIMATE")
-	private String climate;
+	@Column(name = "QTDE_JOGADAS")
+	private Integer qtdeJogadas;
 
-	@Column(name = "TERRAIN")
-	private String terrain;
-	
-	@Column(name = "NUMFILMAPPEARANCES")
-	private Long numFilmAppearances;
+	@Column(name = "QTDE_JOGADAS_MINIMO")
+	private Integer qtdeJogadasMinimo;
+
+	@Column(name = "DIFICULDADE")
+	private Integer dificuldade;
 
 	public Long getId() {
 		return id;
@@ -81,36 +81,36 @@ public class Planet implements Serializable {
 		this.updateDate = updateDate;
 	}
 
-	public String getName() {
-		return name;
+	public String getNomeJogador() {
+		return nomeJogador;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNomeJogador(String nomeJogador) {
+		this.nomeJogador = nomeJogador;
 	}
 
-	public String getClimate() {
-		return climate;
+	public Integer getQtdeJogadas() {
+		return qtdeJogadas;
 	}
 
-	public void setClimate(String climate) {
-		this.climate = climate;
+	public void setQtdeJogadas(Integer qtdeJogadas) {
+		this.qtdeJogadas = qtdeJogadas;
 	}
 
-	public String getTerrain() {
-		return terrain;
+	public Integer getQtdeJogadasMinimo() {
+		return qtdeJogadasMinimo;
 	}
 
-	public void setTerrain(String terrain) {
-		this.terrain = terrain;
+	public void setQtdeJogadasMinimo(Integer qtdeJogadasMinimo) {
+		this.qtdeJogadasMinimo = qtdeJogadasMinimo;
 	}
-	
-	public Long getNumFilmAppearances() {
-		return numFilmAppearances;
+
+	public Integer getDificuldade() {
+		return dificuldade;
 	}
-	
-	public void setNumFilmAppearances(Long numFilmAppearances) {
-		this.numFilmAppearances = numFilmAppearances;
+
+	public void setDificuldade(Integer dificuldade) {
+		this.dificuldade = dificuldade;
 	}
 
 }

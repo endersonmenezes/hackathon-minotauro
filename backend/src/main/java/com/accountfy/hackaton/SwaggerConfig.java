@@ -16,7 +16,7 @@ public class SwaggerConfig {
     public Docket apiDocket() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.gmdiias.apistarwars.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.accountfy.hackaton.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
