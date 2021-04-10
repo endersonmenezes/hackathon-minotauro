@@ -10,8 +10,10 @@ app = Flask(__name__)
 def generate_maze():
     # largura = int(request.args.get('largura', False))
     # altura = int(request.args.get('altura', False))
-    quantidade = int(request.args.get('quantidade'), False)
-    if not quantidade:
+    quantidade = request.args.get('quantidade', False)
+    if quantidade:
+        quantidade = int(quantidade)
+    else:
         quantidade = 10
     start = x, y = 1, 1
     zoom = 20
