@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_file
 from solution import solution_maze
 from models.maze import Maze
 
@@ -26,6 +26,15 @@ def generate_maze():
     maze.cells[1][0] = False
     data = solution_maze(maze.cells, start, end, zoom, borders)
     return jsonify(data)
+
+@app.route('/map/<string:file_type>', methods=['GET'])
+def get_map(file_type):
+    if file_type == 'gif':
+       filename = 'maze.gif'
+    elif file_type == 'png':
+       filename = 'maze.png'
+    return send_file('./tempfolder/' + filename, mimetype='image/gif')
+
 
 
 if __name__ == '__main__':
