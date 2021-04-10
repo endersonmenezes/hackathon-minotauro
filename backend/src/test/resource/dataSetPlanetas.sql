@@ -1,0 +1,2 @@
+INSERT INTO tb_planet (id, climate, creationdate, name, numfilmappearances, terrain, updatedate, version) VALUES(1, 'temperate, tropical', '2021-03-17 00:44:42', 'Yavin IV', 0, 'jungle, rainforests', '2021-03-17 00:44:42', 0);
+INSERT INTO tb_planet (id, climate, creationdate, name, numfilmappearances, terrain, updatedate, version) VALUES(2, 'arid', '2021-03-17 00:45:11', 'Tatooine', 0, 'desert', '2021-03-17 00:45:11', 0);
