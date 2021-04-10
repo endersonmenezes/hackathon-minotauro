@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { DoorsPosition } from '../model/room';
 
 @Component({
@@ -21,5 +28,26 @@ export class RoomComponent implements OnInit {
 
   registraEscolha(escolha: number) {
     this.escolhaRealizada.emit(escolha);
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  getKeypress(event) {
+    console.log(event);
+    switch (event.key) {
+      case 'ArrowUp':
+        this.escolhaRealizada.emit(this.doors.FRENTE);
+        break;
+      case 'ArrowDown':
+        this.escolhaRealizada.emit(this.doors.ATRAS);
+        break;
+      case 'ArrowRight':
+        this.escolhaRealizada.emit(this.doors.DIREITA);
+        break;
+      case 'ArrowLeft':
+        this.escolhaRealizada.emit(this.doors.ESQUERDA);
+        break;
+      default:
+        break;
+    }
   }
 }

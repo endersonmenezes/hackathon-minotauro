@@ -1,9 +1,9 @@
 <div class="grid-room grid-template">
   <div class="item parede-esquerda"></div>
-  <div class="item">
+  <div class="item parede-frente">
     <img
       *ngIf="temPortaFrente"
-      src="../assets/image/porta-diagonal.png"
+      src="../assets/image/porta-frente.png"
       class="porta frente"
       alt="Porta frente"
       (click)="registraEscolha(doors.FRENTE)"
@@ -22,7 +22,6 @@
   </div>
   <div class="item">
     <div class="chao-centro"></div>
-    <button (click)="registraEscolha(doors.ATRAS)">VOLTAR</button>
   </div>
   <div class="item">
     <img

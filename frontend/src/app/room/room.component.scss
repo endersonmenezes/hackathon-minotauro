@@ -4,6 +4,11 @@
   &.grid-template {
     grid-template-columns: repeat(3, 1fr);
     > .item {
+      &.parede-frente {
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+      }
       &.parede-esquerda {
         border-right: 1px solid black;
       }
@@ -32,15 +37,12 @@
   }
 }
 
-.chao {
-  position: flex;
-}
-
 .porta {
   z-index: 1;
   width: 300px;
   position: absolute;
   &.frente {
+    width: 150px;
   }
   &.esquerda {
   }
