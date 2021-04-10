@@ -89,12 +89,15 @@ def solution_maze(cells, start, end, zoom, borders):
             the_path.append((i, j))
             k -= 1
         matrix_graph, cells, start, end, images, zoom, borders = draw_matrix(matrix_graph, cells, start, end, images, zoom, borders, the_path)
-    for i in range(10):
+    
+    for i in range(15):
         if i % 2 == 0:
             matrix_graph, cells, start, end, images, zoom, borders = draw_matrix(matrix_graph, cells, start, end, images, zoom, borders, the_path)
         else:
             matrix_graph, cells, start, end, images, zoom, borders = draw_matrix(matrix_graph, cells, start, end, images, zoom, borders)
-    images[0].save('/home/developer/Git/gmdiias/hackathon-minotauro/pydata/tempfolder/maze.gif', save_all=True, append_images=images[1:], optimize=False, duration=1, loop=0)
+    
+    images[0].save('tempfolder/maze.gif', save_all=True, append_images=images[1:], optimize=False, duration=1, loop=0)
+    images[0].save('tempfolder/maze.png', save_all=True, append_images=images[0:0], optimize=False)
     return {
         'map': cells,
         'solution': the_path,
