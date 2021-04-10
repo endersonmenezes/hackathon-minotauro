@@ -48,7 +48,16 @@ public class Partida implements Serializable {
 
 	@Column(name = "DIFICULDADE")
 	private Integer dificuldade;
-
+	
+	@Column(name = "POS_X")
+	private Integer posX;
+	
+	@Column(name = "POS_Y")
+	private Integer posY;
+	
+	@Column(name = "OLHANDO_PARA")
+	private Integer olhandoPara;
+	
 	public Long getId() {
 		return id;
 	}
@@ -112,5 +121,29 @@ public class Partida implements Serializable {
 	public void setDificuldade(Integer dificuldade) {
 		this.dificuldade = dificuldade;
 	}
-
+	
+	public Integer getPosX() {
+		return posX;
+	}
+	
+	public void setPosX(Integer posX) {
+		this.posX = posX;
+	}
+	
+	public Integer getPosY() {
+		return posY;
+	}
+	
+	public void setPosY(Integer posY) {
+		this.posY = posY;
+	}
+	
+	public Integer getOlhandoPara() {
+		return olhandoPara;
+	}
+	
+	public void setOlhandoPara(Integer olhandoPara) {
+		this.olhandoPara = olhandoPara;
+	}
+	
 }
