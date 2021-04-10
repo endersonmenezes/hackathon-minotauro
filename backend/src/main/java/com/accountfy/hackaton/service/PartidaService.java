@@ -45,7 +45,6 @@ public class PartidaService {
 		}
 		
 		repository.save(partida);
-		posicaoService.inicializa(idPartida);
 		
 		return posicaoService.obtemPosicaoAtualDoJogador(partida);
 	}
