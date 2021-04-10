@@ -9,19 +9,19 @@ export class RoomService {
   initGame(name: string, nivel: number) {
     const body = { nomeJogador: name, dificuldade: nivel };
     return this.http
-      .post<Room>('http://localhost:8080/api/partida', body)
+      .post<Room>('http://04da12d25650.ngrok.io/api/partida', body)
       .toPromise();
   }
 
   getPosicaoAtual(roomId: number) {
     return this.http
-      .get<Doors>(`http://localhost:8080/api/partida/${roomId}`)
+      .get<Doors>(`http://04da12d25650.ngrok.io/api/partida/${roomId}`)
       .toPromise();
   }
 
   mudaPosicao(roomId: number, escolha: number) {
     return this.http
-      .get<Doors>(`http://localhost:8080/api/partida/${roomId}/${escolha}`)
+      .get<Doors>(`http://04da12d25650.ngrok.io/api/partida/${roomId}/${escolha}`)
       .toPromise();
   }
 }

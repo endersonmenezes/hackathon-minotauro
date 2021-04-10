@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
       data: {
         title: 'inicio',
         mapaUrl: 'jornada',
-      },
+      }, disableClose: true
     });
     dialogRef.afterClosed().subscribe((data) => {
       this.startGame(data);

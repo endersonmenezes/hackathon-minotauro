@@ -102,6 +102,12 @@ public class PosicaoService {
 		}
 		posicao.setOlhandoPara(partida.getOlhandoPara());
 		
+		posicao.setVenceu(false);
+		
+		if(partida.getPosX() == 0 && partida.getPosY() == 1) {
+			posicao.setVenceu(true);
+		}
+		
 		return posicao;
 	}
 

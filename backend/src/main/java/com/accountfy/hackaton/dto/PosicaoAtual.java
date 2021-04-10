@@ -11,6 +11,7 @@ public class PosicaoAtual implements Serializable {
 	private Boolean atras;
 	private Integer olhandoPara;
 	private String direcao;
+	private Boolean venceu;
 
 	public Boolean getFrente() {
 		return frente;
@@ -60,5 +61,12 @@ public class PosicaoAtual implements Serializable {
 		this.direcao = direcao;
 	}
 
+	public Boolean getVenceu() {
+		return venceu;
+	}
+	
+	public void setVenceu(Boolean venceu) {
+		this.venceu = venceu;
+	}
 
 }
