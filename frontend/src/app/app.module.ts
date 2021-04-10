@@ -1,19 +1,26 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserModule } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { AppComponent } from './app.component';
-import { RoomComponent } from './room/room.component';
-import { ControlComponent } from './control/control.component';
-import { MatDialogModule } from '@angular/material/dialog'
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MapaModalComponent } from './mapa/mapa-modal.component';
+import { MenuComponent } from './menu/menu.component';
+import { RoomComponent } from './room/room.component';
 
 @NgModule({
-  declarations: [AppComponent, RoomComponent, ControlComponent, MapaModalComponent],
+  declarations: [
+    AppComponent,
+    RoomComponent,
+    MapaModalComponent,
+    MenuComponent,
+  ],
   imports: [
+    FormsModule,
     BrowserModule,
     CommonModule,
     HttpClientModule,
@@ -21,6 +28,7 @@ import { MapaModalComponent } from './mapa/mapa-modal.component';
     ReactiveFormsModule,
     NoopAnimationsModule,
     MatDialogModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
