@@ -1,13 +1,10 @@
 package com.accountfy.hackaton.service;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.accountfy.hackaton.dto.Matriz;
 import com.accountfy.hackaton.dto.PartidaReceived;
 import com.accountfy.hackaton.dto.PartidaSended;
 import com.accountfy.hackaton.dto.PosicaoAtual;
@@ -44,6 +41,7 @@ public class PartidaService {
 			partida.setPosX(19);
 			partida.setPosY(19);
 			partida.setOlhandoPara(1);
+			partida.setQtdeJogadas(0);
 		}
 		
 		repository.save(partida);
@@ -58,6 +56,13 @@ public class PartidaService {
 		Partida alterada = posicaoService.realizaMovimentoDoJogador(partida, escolha);
 		
 		repository.save(alterada);
+		
+		System.out.println("Movendo personagem");
+		System.out.println("Pos X: " + partida.getPosX());
+		System.out.println("Pos Y: " + partida.getPosY());
+		System.out.println("Olhando para: " + partida.getOlhandoPara());
+		System.out.println("Escolha: " + escolha);
+
 		
 		return posicaoService.obtemPosicaoAtualDoJogador(partida);
 	}

@@ -527,15 +527,41 @@ public class PosicaoService {
 		
 		Boolean teste = obtemStatusDaPosicaoEscolhidaNoCaminho(matriz, a);
 		
-		if(!teste) {
+		if(teste) {
 			throw new RuntimeException("Movimento impossivel");
 		}
+
+		
+		int posX = posicaoMudou(partida.getPosX(), a.getFirst());
+		int posY = posicaoMudou(partida.getPosY(), a.getSecond());
+		
+		if(posX != 0) {
+			if(posX > 0) {
+				partida.setOlhandoPara(3);
+			}
+			else if(posX < 0) {
+				partida.setOlhandoPara(2);
+			}
+		}
+		else if(posY != 0) {
+			if(posY > 0) {
+				partida.setOlhandoPara(4);
+			}
+			else if(posY < 0) {
+				partida.setOlhandoPara(1);
+			}
+		}
+		
 		
 		partida.setPosX(a.getFirst());
 		partida.setPosY(a.getSecond());
-		partida.setOlhandoPara(escolha);
-		
+		partida.setQtdeJogadas(partida.getQtdeJogadas()+1);
+			
 		return partida;
+	}
+	
+	public int posicaoMudou(Integer posAntiga, Integer posAtual) {
+		return posAtual-posAntiga;
 	}
 	
 	public PosicaoAtual obtemPosicaoAtualDoJogador(Partida partida) {
@@ -544,23 +570,23 @@ public class PosicaoService {
 		PosicaoAtual posicao = new PosicaoAtual();
 		
 		Pair<Integer, Integer> cordFrente = obtemPosicaoDaEscolha(partida.getOlhandoPara(), 1, partida.getPosX(), partida.getPosY());
-		posicao.setFrente(obtemStatusDaPosicaoEscolhidaNoCaminho(matriz, cordFrente));
+		posicao.setFrente(!obtemStatusDaPosicaoEscolhidaNoCaminho(matriz, cordFrente));
 		
 		Pair<Integer, Integer> cordEsquerda = obtemPosicaoDaEscolha(partida.getOlhandoPara(), 2, partida.getPosX(), partida.getPosY());
-		posicao.setEsquerda(obtemStatusDaPosicaoEscolhidaNoCaminho(matriz, cordEsquerda));
+		posicao.setEsquerda(!obtemStatusDaPosicaoEscolhidaNoCaminho(matriz, cordEsquerda));
 
 		Pair<Integer, Integer> cordDireita = obtemPosicaoDaEscolha(partida.getOlhandoPara(), 3, partida.getPosX(), partida.getPosY());
-		posicao.setFrente(obtemStatusDaPosicaoEscolhidaNoCaminho(matriz, cordDireita));
+		posicao.setDireita(!obtemStatusDaPosicaoEscolhidaNoCaminho(matriz, cordDireita));
 
 		Pair<Integer, Integer> corTras = obtemPosicaoDaEscolha(partida.getOlhandoPara(), 4, partida.getPosX(), partida.getPosY());
-		posicao.setFrente(obtemStatusDaPosicaoEscolhidaNoCaminho(matriz, corTras));
+		posicao.setAtras(!obtemStatusDaPosicaoEscolhidaNoCaminho(matriz, corTras));
 
 		return posicao;
 	}
 
 	private Boolean obtemStatusDaPosicaoEscolhidaNoCaminho(Matriz matriz, Pair<Integer, Integer> cordFrente) {
 		try {
-			return matriz.getMap().get(cordFrente.getFirst()).get(cordFrente.getSecond());
+			return matriz.getMap().get(cordFrente.getSecond()).get(cordFrente.getFirst());
 		} catch (Exception e) {
 			return false;
 		}
@@ -591,7 +617,7 @@ public class PosicaoService {
 				posRetornoY = posY-1;
 			}
 			else if (escolha == 4) {
-				posRetornoX = posX-1;
+				posRetornoX = posX+1;
 			}
 		} else if (olhandoPara == 3) {
 			if (escolha == 1) {
