@@ -1,7 +1,7 @@
 <div class="info">
   <img
     src="../assets/image/bussola.png"
-    class="bussola {{ position }}"
+    class="bussola {{ direcao }}"
     alt="bussola"
   />
 </div>
@@ -14,7 +14,7 @@
       src="../assets/image/porta-frente.png"
       class="porta frente"
       alt="Porta frente"
-      (click)="registraEscolha(doors.FRENTE)"
+      (click)="mudaPosicao(doors.FRENTE)"
     />
   </div>
   <div class="item parede-direita"></div>
@@ -24,7 +24,7 @@
       src="../assets/image/porta-diagonal.png"
       class="porta esquerda"
       alt="Porta esquerda"
-      (click)="registraEscolha(doors.ESQUERDA)"
+      (click)="mudaPosicao(doors.ESQUERDA)"
     />
     <div class="chao-esquerda"></div>
   </div>
@@ -37,7 +37,7 @@
       src="../assets/image/porta-diagonal.png"
       class="porta direita"
       alt="Porta direita"
-      (click)="registraEscolha(doors.DIREITA)"
+      (click)="mudaPosicao(doors.DIREITA)"
     />
     <div class="chao-direita"></div>
   </div>

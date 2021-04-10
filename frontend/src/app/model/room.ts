@@ -7,6 +7,7 @@ export class Doors {
   esquerda: boolean;
   direita: boolean;
   atras: boolean;
+  direcao: string;
 }
 
 export enum DoorsPosition {

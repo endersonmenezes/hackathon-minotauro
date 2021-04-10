@@ -1,8 +1,9 @@
 <div class="body">
   <app-room
+    [roomId]="roomId"
     [temPortaFrente]="temPortaFrente"
     [temPortaEsquerda]="temPortaEsquerda"
     [temPortaDireita]="temPortaDireita"
-    (escolhaRealizada)="mudaPosicao($event)"
+    [temPortaAtras]="temPortaAtras"
   ></app-room>
 </div>

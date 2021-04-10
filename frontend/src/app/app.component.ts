@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   temPortaFrente = false;
   temPortaDireita = false;
   temPortaEsquerda = false;
+  temPortaAtras = false;
 
   constructor(private roomService: RoomService) {}
 
@@ -25,18 +26,11 @@ export class AppComponent implements OnInit {
           this.temPortaDireita = roo.direita;
           this.temPortaEsquerda = roo.esquerda;
           this.temPortaFrente = roo.frente;
+          this.temPortaAtras = roo.atras;
         });
       })
       .catch((err) => {
         return err;
       });
-  }
-
-  mudaPosicao(posicao: number) {
-    this.roomService.mudaPosicao(this.roomId, posicao).then((roo) => {
-      this.temPortaDireita = roo.direita;
-      this.temPortaEsquerda = roo.esquerda;
-      this.temPortaFrente = roo.frente;
-    });
   }
 }
