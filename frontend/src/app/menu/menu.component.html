@@ -1,0 +1,48 @@
+<div>
+  <h2 mat-dialog-title>Bem vidos ao labirinto do minotauro</h2>
+  <form>
+    <div>
+      <input
+        name="nome"
+        placeholder="Insira seu nome heróico..."
+        [(ngModel)]="nome"
+      />
+    </div>
+    <br />
+    <div>
+      <input
+        type="radio"
+        id="plebeu"
+        name="nivel"
+        value="1"
+        (click)="setNivel(1)"
+      />
+      <label for="plebeu">Plebeu</label><br />
+      <input
+        type="radio"
+        id="gurreiro"
+        name="nivel"
+        value="2"
+        (click)="setNivel(2)"
+      />
+      <label for="gurreiro">Guerreiro</label><br />
+      <input
+        type="radio"
+        id="heroi"
+        name="nivel"
+        value="3"
+        (click)="setNivel(3)"
+      />
+      <label for="heroi">Herói</label>
+    </div>
+    <br />
+  </form>
+  <button
+    mat-stroked-button
+    color="primary"
+    [disabled]="!nome || !nivel"
+    (click)="start()"
+  >
+    Iniciar Jornada!
+  </button>
+</div>
