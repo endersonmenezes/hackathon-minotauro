@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-room',
@@ -10,7 +10,13 @@ export class RoomComponent implements OnInit {
   @Input() temPortaDireita: boolean;
   @Input() temPortaEsquerda: boolean;
 
+  @Output() escolhaRealizada = new EventEmitter<number>();
+
   constructor() {}
 
   ngOnInit(): void {}
+
+  registraEscolha(escolha: number){
+    this.escolhaRealizada.emit(escolha)
+  }
 }

@@ -6,4 +6,5 @@ export class Doors {
   frente: boolean;
   direita: boolean;
   esquerda: boolean;
+  atras: boolean;
 }

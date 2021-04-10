@@ -1,5 +1,7 @@
 package com.accountfy.hackaton.controller;
 
+import java.util.Random;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,11 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.accountfy.hackaton.dto.PartidaReceived;
 import com.accountfy.hackaton.dto.PartidaSended;
+import com.accountfy.hackaton.dto.PosicaoAtual;
 import com.accountfy.hackaton.service.PartidaService;
-
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
 @RestController
 @RequestMapping("/partida")
@@ -27,14 +26,30 @@ public class PartidaController {
 	}
 
 	@GetMapping("/{id}")
-	@ApiResponse(responseCode = "200", description = "Planeta encontrado e retornado com sucesso.")
-	@ApiResponse(responseCode = "400", description = "Planeta não encontrado no banco de dados.")
-	@Operation(summary = "Busca um planeta através de seu ID.")
-	public ResponseEntity<Void> getById(
-			@PathVariable("id") @Parameter(description = "ID do planeta a ser buscado.") Long id) {
-//		PlanetResponseDTO planet = service.getById(id);
-//		return ResponseEntity.ok(planet);
-		return ResponseEntity.noContent().build();
+	public ResponseEntity<PosicaoAtual> getById(@PathVariable("id") Long id) {
+
+		PosicaoAtual posicao = new PosicaoAtual();
+		posicao.setEsquerda(new Random().nextBoolean());
+		posicao.setDireita(new Random().nextBoolean());
+		posicao.setFrente(new Random().nextBoolean());
+		posicao.setAtras(new Random().nextBoolean());
+
+		return ResponseEntity.ok(posicao);
+	}
+	
+	@GetMapping("/{id}/{escolha}")
+	public ResponseEntity<PosicaoAtual> mudaPosicao(@PathVariable("id") Long id, @PathVariable("escolha") Long escolha){
+		
+		System.out.println("Escolha = " + escolha);
+		
+		PosicaoAtual posicao = new PosicaoAtual();
+		posicao.setEsquerda(new Random().nextBoolean());
+		posicao.setDireita(new Random().nextBoolean());
+		posicao.setFrente(new Random().nextBoolean());
+		posicao.setAtras(new Random().nextBoolean());
+
+		return ResponseEntity.ok(posicao);
+		
 	}
 
 	@PostMapping

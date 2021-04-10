@@ -13,11 +13,15 @@ export class RoomService {
       .toPromise();
   }
 
-  getFirstRoom(roomId: number) {
+  getPosicaoAtual(roomId: number) {
     return this.http
-      .get<Doors>(`http://localhost:8080/api/init/${roomId}`)
+      .get<Doors>(`http://localhost:8080/api/partida/${roomId}`)
       .toPromise();
   }
 
-  clickDoor(roomId: number) {}
+  mudaPosicao(roomId: number, escolha: number) {
+    return this.http
+      .get<Doors>(`http://localhost:8080/api/partida/${roomId}/${escolha}`)
+      .toPromise();
+  }
 }
