@@ -5,6 +5,7 @@ import java.util.Objects;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.accountfy.hackaton.dto.Matriz;
 import com.accountfy.hackaton.dto.PartidaReceived;
 import com.accountfy.hackaton.dto.PartidaSended;
 import com.accountfy.hackaton.dto.PosicaoAtual;
@@ -30,22 +31,22 @@ public class PartidaService {
 	@Transactional
 	public PartidaSended post(PartidaReceived dto) {
 		Partida partida = mapper.toPartida(dto);
+
+		
 		Partida saved = repository.save(partida);
+		Matriz matriz = posicaoService.obtemMatrizDaPartida(saved);
+		int posicaoInicial = matriz.getMap().size()-1;
+		saved.setPosX(posicaoInicial);
+		saved.setPosY(posicaoInicial);
+		saved.setQtdeJogadasMinimo(matriz.getSolution().size());
+		saved.setQtdeJogadas(0);
+		saved.setOlhandoPara(1);
 		return mapper.toPartida(saved);
 	}
 	
 	public PosicaoAtual get(Long idPartida) {
 		Partida partida = repository.findById(idPartida).orElseThrow(() -> new RuntimeException("Partida não localizada."));
-		
-		if(Objects.isNull(partida.getPosX())) {
-			partida.setPosX(19);
-			partida.setPosY(19);
-			partida.setOlhandoPara(1);
-			partida.setQtdeJogadas(0);
-		}
-		
 		repository.save(partida);
-		
 		return posicaoService.obtemPosicaoAtualDoJogador(partida);
 	}
 	
@@ -62,7 +63,6 @@ public class PartidaService {
 		System.out.println("Olhando para: " + partida.getOlhandoPara());
 		System.out.println("Escolha: " + escolha);
 
-		
 		return posicaoService.obtemPosicaoAtualDoJogador(partida);
 	}
 }

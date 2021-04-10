@@ -63,7 +63,7 @@ public class PosicaoService {
 		return partida;
 	}
 
-	private Matriz obtemMatrizDaPartida(Partida partida) {
+	public Matriz obtemMatrizDaPartida(Partida partida) {
 		
 		if(!matrizPosicao.containsKey(partida.getId().intValue())) {
 			matrizPosicao.put(partida.getId().intValue(), restClient.performsRequestToExternalApi());
