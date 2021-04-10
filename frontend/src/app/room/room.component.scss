@@ -4,15 +4,45 @@
   &.grid-template {
     grid-template-columns: repeat(3, 1fr);
     > .item {
-      border: 1px solid red;
+      &.parede-frente {
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+      }
+      &.parede-esquerda {
+        border-right: 1px solid black;
+      }
+      &.parede-direita {
+        border-left: 1px solid black;
+      }
+      > .chao {
+        &-centro {
+          height: 100%;
+          background-color: gray;
+        }
+        &-esquerda {
+          height: 100%;
+          position: relative;
+          background-color: gray;
+          clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+        }
+        &-direita {
+          height: 100%;
+          position: relative;
+          background-color: gray;
+          clip-path: polygon(0 0, 0% 100%, 100% 100%);
+        }
+      }
     }
   }
 }
 
 .porta {
+  z-index: 1;
   width: 300px;
   position: absolute;
   &.frente {
+    width: 150px;
   }
   &.esquerda {
   }

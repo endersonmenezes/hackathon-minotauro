@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RoomService } from 'src/service/room.service';
+import { DoorsPosition } from './model/room';
 
 @Component({
   selector: 'app-root',

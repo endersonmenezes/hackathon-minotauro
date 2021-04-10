@@ -4,7 +4,14 @@ export class Room {
 
 export class Doors {
   frente: boolean;
-  direita: boolean;
   esquerda: boolean;
+  direita: boolean;
   atras: boolean;
+}
+
+export enum DoorsPosition {
+  FRENTE = 1,
+  ESQUERDA = 2,
+  DIREITA = 3,
+  ATRAS = 4,
 }
