@@ -17,10 +17,10 @@ public class PythonApiClientService {
 	private static final String URL_SWAPI_API = "http://localhost:5000/";
 	private WebClient webClient = WebClient.create(URL_SWAPI_API);
 
-	public Matriz performsRequestToExternalApi() throws ServiceException {
+	public Matriz performsRequestToExternalApi(Long idPartida, Integer quantidade) throws ServiceException {
 		try {
 			return webClient.get().uri(
-					builder -> builder.path("generateMaze").build())
+					builder -> builder.path("generateMaze").queryParam("id_partida", idPartida).queryParam("quantidade", quantidade).build())
 					.retrieve().bodyToMono(Matriz.class).block();
 		} catch (WebClientException e) {
 			LOG.error("Ocorreu um erro ao realizar a requição. Erro: {}", e.getMessage());

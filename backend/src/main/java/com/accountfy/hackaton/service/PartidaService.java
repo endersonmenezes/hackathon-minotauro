@@ -34,13 +34,16 @@ public class PartidaService {
 
 		
 		Partida saved = repository.save(partida);
-		Matriz matriz = posicaoService.obtemMatrizDaPartida(saved);
-		int posicaoInicial = matriz.getMap().size()-1;
-		saved.setPosX(posicaoInicial);
-		saved.setPosY(posicaoInicial);
-		saved.setQtdeJogadasMinimo(matriz.getSolution().size());
-		saved.setQtdeJogadas(0);
-		saved.setOlhandoPara(1);
+		if(Objects.isNull(saved.getPosX())){
+			Matriz matriz = posicaoService.obtemMatrizDaPartida(saved);
+			int posicaoInicial = matriz.getMap().size()-2;
+			saved.setPosX(posicaoInicial);
+			saved.setPosY(posicaoInicial);
+			saved.setQtdeJogadasMinimo(matriz.getSolution().size());
+			saved.setQtdeJogadas(0);
+			saved.setOlhandoPara(1);
+			
+		}
 		return mapper.toPartida(saved);
 	}
 	

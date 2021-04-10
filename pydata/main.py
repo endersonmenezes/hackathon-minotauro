@@ -34,7 +34,7 @@ def get_map(file_type, id_partida):
        filename = f'{id_partida}.gif'
     elif file_type == 'png':
        filename = f'{id_partida}.png'
-    return send_file('./tempfolder/' + filename, mimetype='image/gif')
+    return send_file('/home/developer/Git/gmdiias/hackathon-minotauro/pydata/tempfolder/' + filename, mimetype='image/gif')
 
 
 

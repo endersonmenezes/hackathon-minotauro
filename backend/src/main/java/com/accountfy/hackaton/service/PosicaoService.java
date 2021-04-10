@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 import com.accountfy.hackaton.dto.Matriz;
 import com.accountfy.hackaton.dto.PosicaoAtual;
 import com.accountfy.hackaton.entity.Partida;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
 public class PosicaoService {
@@ -66,7 +64,7 @@ public class PosicaoService {
 	public Matriz obtemMatrizDaPartida(Partida partida) {
 		
 		if(!matrizPosicao.containsKey(partida.getId().intValue())) {
-			matrizPosicao.put(partida.getId().intValue(), restClient.performsRequestToExternalApi());
+			matrizPosicao.put(partida.getId().intValue(), restClient.performsRequestToExternalApi(partida.getId(), partida.getDificuldade()*10));
 		}
 		
 		return matrizPosicao.get(partida.getId().intValue());

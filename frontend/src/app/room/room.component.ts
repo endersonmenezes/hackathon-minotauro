@@ -71,6 +71,7 @@ export class RoomComponent implements OnInit {
       data: {
         title: 'taporra',
         mapaUrl: 'teste',
+        roomId: this.roomId
       },
     })
   }
