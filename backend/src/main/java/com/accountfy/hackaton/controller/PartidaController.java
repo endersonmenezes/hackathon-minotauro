@@ -28,28 +28,14 @@ public class PartidaController {
 	@GetMapping("/{id}")
 	public ResponseEntity<PosicaoAtual> getById(@PathVariable("id") Long id) {
 
-		PosicaoAtual posicao = new PosicaoAtual();
-		posicao.setEsquerda(new Random().nextBoolean());
-		posicao.setDireita(new Random().nextBoolean());
-		posicao.setFrente(new Random().nextBoolean());
-		posicao.setAtras(new Random().nextBoolean());
-
-		return ResponseEntity.ok(posicao);
+		return ResponseEntity.ok(service.get(id));
 	}
 	
 	@GetMapping("/{id}/{escolha}")
-	public ResponseEntity<PosicaoAtual> mudaPosicao(@PathVariable("id") Long id, @PathVariable("escolha") Long escolha){
+	public ResponseEntity<PosicaoAtual> mudaPosicao(@PathVariable("id") Long id, @PathVariable("escolha") Integer escolha){
 		
-		System.out.println("Escolha = " + escolha);
-		
-		PosicaoAtual posicao = new PosicaoAtual();
-		posicao.setEsquerda(new Random().nextBoolean());
-		posicao.setDireita(new Random().nextBoolean());
-		posicao.setFrente(new Random().nextBoolean());
-		posicao.setAtras(new Random().nextBoolean());
 
-		return ResponseEntity.ok(posicao);
-		
+		return ResponseEntity.ok(service.trocaPosicao(id, escolha));
 	}
 
 	@PostMapping

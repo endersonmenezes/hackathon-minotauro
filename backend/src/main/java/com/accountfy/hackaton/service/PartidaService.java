@@ -1,10 +1,16 @@
 package com.accountfy.hackaton.service;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.accountfy.hackaton.dto.Matriz;
 import com.accountfy.hackaton.dto.PartidaReceived;
 import com.accountfy.hackaton.dto.PartidaSended;
+import com.accountfy.hackaton.dto.PosicaoAtual;
 import com.accountfy.hackaton.entity.Partida;
 import com.accountfy.hackaton.mapper.PartidaMapper;
 import com.accountfy.hackaton.repository.PartidaRepository;
@@ -16,60 +22,43 @@ public class PartidaService {
 
 	private final PartidaRepository repository;
 
+	private final PosicaoService posicaoService;
 
-	public PartidaService(PartidaMapper mapper, PartidaRepository repository) {
+	public PartidaService(PartidaMapper mapper, PartidaRepository repository, PosicaoService posicaoService) {
 		this.mapper = mapper;
 		this.repository = repository;
+		this.posicaoService = posicaoService;
 	}
-//
-//	public PlanetResponseDTO getById(Long id) {
-//		Optional<Planet> planet = repository.findById(id);
-//		if (planet.isEmpty()) {
-//			throw new EntityNotFoundException("Nenhuma entidade localizada com o ID informado.");
-//		}
-//		return mapper.toPlanet(planet.get());
-//	}
-//
-//	public PlanetResponseDTO getByName(String name) {
-//		Optional<Planet> planet = repository.findFirstByNameStartsWithIgnoreCaseOrderByNameAsc(name);
-//		if (planet.isEmpty()) {
-//			throw new EntityNotFoundException("Nenhuma entidade localizada com o nome informado.");
-//		}
-//		return mapper.toPlanet(planet.get());
-//	}
-//
-//	public List<PlanetResponseDTO> findAll() {
-//		return repository.findAll().stream().map(mapper::toPlanet).collect(Collectors.toList());
-//	}
 
 	@Transactional
 	public PartidaSended post(PartidaReceived dto) {
-//		Planet planeta = mapper.toPlanet(dto);
-//		Long numFilmPlanetAppearances = searchNumFilmPlanetAppearances(planeta.getName());
-//		planeta.setNumFilmAppearances(numFilmPlanetAppearances);
-//		Planet planetaSaved = repository.save(planeta);
-		
 		Partida partida = mapper.toPartida(dto);
 		Partida saved = repository.save(partida);
 		return mapper.toPartida(saved);
 	}
-
-//	private Long searchNumFilmPlanetAppearances(String namePlanet) {
-//		PlanetStarWarsApiDTO planet = swApiService.getPlanetByName(namePlanet);
-//		return planet.getNumFilmAppearances();
-//	}
-//
-//	@Transactional
-//	public void deleteById(Long id) {
-//		Optional<Planet> planet = repository.findById(id);
-//
-//		if (planet.isEmpty()) {
-//			throw new EntityNotFoundException("Nenhuma entidade localizada com o ID informado.");
-//		}
-//		repository.delete(planet.get());
-//	}
-//
-//	public PageableStarWarsApiDTO findAllInSwApi(String filter, int page) {
-//		return swApiService.findAllPlanets(filter, page);
-//	}
+	
+	public PosicaoAtual get(Long idPartida) {
+		Partida partida = repository.findById(idPartida).orElseThrow(() -> new RuntimeException("Partida não localizada."));
+		
+		if(Objects.isNull(partida.getPosX())) {
+			partida.setPosX(19);
+			partida.setPosY(19);
+			partida.setOlhandoPara(1);
+		}
+		
+		repository.save(partida);
+		posicaoService.inicializa(idPartida);
+		
+		return posicaoService.obtemPosicaoAtualDoJogador(partida);
+	}
+	
+	public PosicaoAtual trocaPosicao(Long idPartida, Integer escolha) {
+		Partida partida = repository.findById(idPartida).orElseThrow(() -> new RuntimeException("Partida não localizada."));
+		
+		Partida alterada = posicaoService.realizaMovimentoDoJogador(partida, escolha);
+		
+		repository.save(alterada);
+		
+		return posicaoService.obtemPosicaoAtualDoJogador(partida);
+	}
 }
