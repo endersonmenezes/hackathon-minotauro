@@ -12,6 +12,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { RoomService } from 'src/service/room.service';
 import { MapaModalComponent } from '../mapa/mapa-modal.component';
 import { DoorsPosition } from '../model/room';
+import { VitoriaComponent } from '../vitoria/vitoria.component';
 
 @Component({
   selector: 'app-room',
@@ -28,6 +29,7 @@ export class RoomComponent implements OnInit {
   modalRef: BsModalRef;
   doors = DoorsPosition;
   direcao = 'norte';
+  venceu = false;
 
   @Output() escolhaRealizada = new EventEmitter<number>();
 
@@ -42,37 +44,51 @@ export class RoomComponent implements OnInit {
       this.temPortaFrente = roo.frente;
       this.temPortaAtras = roo.atras;
       this.direcao = roo.direcao;
+      if (roo.venceu) {
+        this.modalVitoria();
+      }
     });
   }
 
   @HostListener('document:keydown', ['$event'])
   getKeypress(event) {
-    console.log(event);
     switch (event.key) {
       case 'ArrowUp':
-        this.mudaPosicao(this.doors.FRENTE);
+        if (this.temPortaFrente) {
+          this.mudaPosicao(this.doors.FRENTE);
+        }
         break;
       case 'ArrowDown':
-        this.mudaPosicao(this.doors.ATRAS);
+        if (this.temPortaAtras) {
+          this.mudaPosicao(this.doors.ATRAS);
+        }
         break;
       case 'ArrowRight':
-        this.mudaPosicao(this.doors.DIREITA);
+        if (this.temPortaDireita) {
+          this.mudaPosicao(this.doors.DIREITA);
+        }
         break;
       case 'ArrowLeft':
-        this.mudaPosicao(this.doors.ESQUERDA);
+        if (this.temPortaEsquerda) {
+          this.mudaPosicao(this.doors.ESQUERDA);
+        }
         break;
       default:
         break;
     }
   }
 
-  abrirMapa(){
+  modalVitoria() {
+    this.dialog.open(VitoriaComponent);
+  }
+
+  abrirMapa() {
     this.dialog.open(MapaModalComponent, {
       data: {
         title: 'taporra',
         mapaUrl: 'teste',
         roomId: this.roomId
       },
-    })
+    });
   }
 }

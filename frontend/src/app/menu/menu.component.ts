@@ -13,7 +13,6 @@ export class MenuComponent {
   constructor(public dialogRef: MatDialogRef<MenuComponent>) {}
 
   start() {
-    console.log(this.nome, this.nivel);
     const data = {nome: this.nome, nivel: this.nivel};
     this.dialogRef.close(data);
   }

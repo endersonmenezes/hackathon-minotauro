@@ -8,6 +8,7 @@ export class Doors {
   direita: boolean;
   atras: boolean;
   direcao: string;
+  venceu: boolean;
 }
 
 export enum DoorsPosition {
