@@ -7,8 +7,10 @@ import {
   Output,
   TemplateRef,
 } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { RoomService } from 'src/service/room.service';
+import { MapaModalComponent } from '../mapa/mapa-modal.component';
 import { DoorsPosition } from '../model/room';
 
 @Component({
@@ -29,7 +31,7 @@ export class RoomComponent implements OnInit {
 
   @Output() escolhaRealizada = new EventEmitter<number>();
 
-  constructor(private roomService: RoomService) {}
+  constructor(private roomService: RoomService, protected dialog: MatDialog) {}
 
   ngOnInit(): void {}
 
@@ -62,5 +64,14 @@ export class RoomComponent implements OnInit {
       default:
         break;
     }
+  }
+
+  abrirMapa(){
+    this.dialog.open(MapaModalComponent, {
+      data: {
+        title: 'taporra',
+        mapaUrl: 'teste',
+      },
+    })
   }
 }
