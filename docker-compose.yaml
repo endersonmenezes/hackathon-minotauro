@@ -14,7 +14,7 @@ services:
       context: ./pydata
       dockerfile: Dockerfile
     container_name: pydata
-    command: python main.py
+    command: python pydata/main.py
     expose:
       - 5000
     volumes:
