@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { RoomService } from 'src/service/room.service';
 import { DoorsPosition } from './model/room';
 
@@ -20,22 +21,22 @@ export class AppComponent implements OnInit {
       .initGame('Pedro', 1)
       .then((room) => {
         this.roomId = room.id;
-          this.roomService.getPosicaoAtual(this.roomId).then((roo) => {
-            this.temPortaDireita = roo.direita
-            this.temPortaEsquerda = roo.esquerda
-            this.temPortaFrente = roo.frente
-          });
+        this.roomService.getPosicaoAtual(this.roomId).then((roo) => {
+          this.temPortaDireita = roo.direita;
+          this.temPortaEsquerda = roo.esquerda;
+          this.temPortaFrente = roo.frente;
+        });
       })
       .catch((err) => {
         return err;
       });
   }
 
-  mudaPosicao(posicao: number){
+  mudaPosicao(posicao: number) {
     this.roomService.mudaPosicao(this.roomId, posicao).then((roo) => {
-      this.temPortaDireita = roo.direita
-      this.temPortaEsquerda = roo.esquerda
-      this.temPortaFrente = roo.frente
+      this.temPortaDireita = roo.direita;
+      this.temPortaEsquerda = roo.esquerda;
+      this.temPortaFrente = roo.frente;
     });
   }
 }

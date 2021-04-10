@@ -1,3 +1,29 @@
+.control {
+  position: absolute;
+  background-color: gray;
+  border: 1px solid black;
+}
+
+.info {
+  position: absolute;
+  .bussola {
+    height: 150px;
+    padding: 15px;
+    &.norte {
+      transform: rotate(0deg);
+    }
+    &.oeste {
+      transform: rotate(90deg);
+    }
+    &.sul {
+      transform: rotate(180deg);
+    }
+    &.leste {
+      transform: rotate(270deg);
+    }
+  }
+}
+
 .grid-room {
   height: 100%;
   display: grid;
@@ -39,14 +65,13 @@
 
 .porta {
   z-index: 1;
-  width: 300px;
   position: absolute;
   &.frente {
     width: 150px;
   }
   &.esquerda {
+    transform: rotateY(180deg);
   }
   &.direita {
-    transform: rotateY(180deg);
   }
 }
