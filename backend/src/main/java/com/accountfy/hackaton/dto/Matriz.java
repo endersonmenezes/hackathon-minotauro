@@ -5,7 +5,7 @@ import java.util.List;
 public class Matriz {
 
 	private List<List<Boolean>> map;
-	private List<String> solution;
+	private List<List<Integer>> solution;
 	private String mapImage;
 
 	public List<List<Boolean>> getMap() {
@@ -16,11 +16,11 @@ public class Matriz {
 		this.map = map;
 	}
 
-	public List<String> getSolution() {
+	public List<List<Integer>> getSolution() {
 		return solution;
 	}
-
-	public void setSolution(List<String> solution) {
+	
+	public void setSolution(List<List<Integer>> solution) {
 		this.solution = solution;
 	}
 

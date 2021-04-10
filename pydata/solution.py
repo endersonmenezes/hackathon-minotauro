@@ -94,7 +94,7 @@ def solution_maze(cells, start, end, zoom, borders):
             matrix_graph, cells, start, end, images, zoom, borders = draw_matrix(matrix_graph, cells, start, end, images, zoom, borders, the_path)
         else:
             matrix_graph, cells, start, end, images, zoom, borders = draw_matrix(matrix_graph, cells, start, end, images, zoom, borders)
-    images[0].save('tempfolder/maze.gif', save_all=True, append_images=images[1:], optimize=False, duration=1, loop=0)
+    images[0].save('/home/developer/Git/gmdiias/hackathon-minotauro/pydata/tempfolder/maze.gif', save_all=True, append_images=images[1:], optimize=False, duration=1, loop=0)
     return {
         'map': cells,
         'solution': the_path,
