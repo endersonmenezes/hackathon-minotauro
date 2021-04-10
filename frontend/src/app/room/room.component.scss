@@ -1,0 +1,22 @@
+.grid-room {
+  height: 100%;
+  display: grid;
+  &.grid-template {
+    grid-template-columns: repeat(3, 1fr);
+    > .item {
+      border: 1px solid red;
+    }
+  }
+}
+
+.porta {
+  width: 300px;
+  position: absolute;
+  &.frente {
+  }
+  &.esquerda {
+  }
+  &.direita {
+    transform: rotateY(180deg);
+  }
+}
