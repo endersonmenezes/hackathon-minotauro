@@ -96,8 +96,8 @@ def solution_maze(cells, start, end, zoom, borders):
         else:
             matrix_graph, cells, start, end, images, zoom, borders = draw_matrix(matrix_graph, cells, start, end, images, zoom, borders)
     
-    images[0].save('tempfolder/maze.gif', save_all=True, append_images=images[1:], optimize=False, duration=1, loop=0)
-    images[0].save('tempfolder/maze.png', save_all=True, append_images=images[0:0], optimize=False)
+    images[0].save('./tempfolder/maze.gif', save_all=True, append_images=images[1:], optimize=False, duration=1, loop=0)
+    images[0].save('./tempfolder/maze.png', save_all=True, append_images=images[0:0], optimize=False)
     return {
         'map': cells,
         'solution': the_path,
