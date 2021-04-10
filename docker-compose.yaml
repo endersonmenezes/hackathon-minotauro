@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  postgres-hackaton:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: "Mudar@123"
+    ports:
+      - "5432:5432"
