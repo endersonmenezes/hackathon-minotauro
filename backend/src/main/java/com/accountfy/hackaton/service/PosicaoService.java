@@ -93,6 +93,17 @@ public class PosicaoService {
 		Pair<Integer, Integer> corTras = obtemPosicaoDaEscolha(partida.getOlhandoPara(), 4, partida.getPosX(), partida.getPosY());
 		posicao.setAtras(!obtemStatusDaPosicaoEscolhidaNoCaminho(matriz, corTras));
 
+		if(partida.getOlhandoPara() == 1) {
+			posicao.setDirecao("norte");
+		} else if(partida.getOlhandoPara() == 2) {
+			posicao.setDirecao("leste");
+		} else if(partida.getOlhandoPara() == 3) {
+			posicao.setDirecao("oeste");
+		} else if(partida.getOlhandoPara() == 4) {
+			posicao.setDirecao("sul");
+		}
+		posicao.setOlhandoPara(partida.getOlhandoPara());
+		
 		return posicao;
 	}
 
